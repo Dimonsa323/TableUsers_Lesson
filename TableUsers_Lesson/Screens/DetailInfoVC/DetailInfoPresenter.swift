@@ -7,18 +7,17 @@
 
 import Foundation
 
-
 // MARK: - Protocol Presenter
 
 protocol DetailInfoPresenterDelegate {
     
-    func send(with text: String)
+    func send(myModel: MyClient)
 }
 
 protocol DetailInfoPresenterProtocol {
     
-  //  var text: String { get set }
-    func getText(with text: String)
+    
+    func getText(myModel: MyClient)
 }
 
 // MARK: - Class
@@ -26,8 +25,6 @@ protocol DetailInfoPresenterProtocol {
 class DetailInfoPresenter: DetailInfoPresenterProtocol {
     
     // MARK: - Properties
-    
-//    var text: String
     
     private let delegate: DetailInfoPresenterDelegate
     private let navigator: NavigatorProtocol
@@ -41,8 +38,8 @@ class DetailInfoPresenter: DetailInfoPresenterProtocol {
     
     // MARK: - Method
     
-    func getText(with text: String) {
-        delegate.send(with: text)
+    func getText(myModel: MyClient) {
+        delegate.send(myModel: myModel)
     }
 }
 

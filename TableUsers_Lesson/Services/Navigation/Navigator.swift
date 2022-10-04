@@ -11,7 +11,7 @@ import UIKit
 
 protocol NavigatorProtocol {
     func showCreateClientVC(view: UIViewController, delegate: DetailInfoPresenterDelegate)
-
+    func showCellScreen(view: UIViewController)
 }
 
 class Navigator: NavigatorProtocol {
@@ -26,6 +26,11 @@ class Navigator: NavigatorProtocol {
     
     func showCreateClientVC(view: UIViewController, delegate: DetailInfoPresenterDelegate) {
         let vc = assembler.createClientVC(delegate: delegate, navigator: self)
+        view.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func showCellScreen(view: UIViewController) {
+        let vc = assembler.createInfoCell(navigator: self)
         view.navigationController?.pushViewController(vc, animated: true)
     }
 }

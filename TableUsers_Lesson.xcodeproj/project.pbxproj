@@ -29,6 +29,7 @@
 		14E729E028E0CADC0008C16A /* CoreDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E729DF28E0CADC0008C16A /* CoreDataStore.swift */; };
 		14E729E828E0E34D0008C16A /* ClientInfoEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E729E628E0E34D0008C16A /* ClientInfoEntity+CoreDataClass.swift */; };
 		14E729E928E0E34D0008C16A /* ClientInfoEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E729E728E0E34D0008C16A /* ClientInfoEntity+CoreDataProperties.swift */; };
+		14E729EB28E98D210008C16A /* EditClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E729EA28E98D210008C16A /* EditClient.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +57,7 @@
 		14E729DF28E0CADC0008C16A /* CoreDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStore.swift; sourceTree = "<group>"; };
 		14E729E628E0E34D0008C16A /* ClientInfoEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ClientInfoEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
 		14E729E728E0E34D0008C16A /* ClientInfoEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ClientInfoEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		14E729EA28E98D210008C16A /* EditClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditClient.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,6 +171,7 @@
 			isa = PBXGroup;
 			children = (
 				149AB7F928DCEE9900557B63 /* User.swift */,
+				14E729EA28E98D210008C16A /* EditClient.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -293,6 +296,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14E729EB28E98D210008C16A /* EditClient.swift in Sources */,
 				149AB7F628DCDE7200557B63 /* ListOfClientsVC.swift in Sources */,
 				14E729D628E0C76E0008C16A /* InfoClientCellVC.swift in Sources */,
 				14E729D928E0C7880008C16A /* InfoClientCellPresenter.swift in Sources */,

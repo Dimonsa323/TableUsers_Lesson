@@ -15,13 +15,20 @@ class Assembler {
     func createFirstVC(navigator: NavigatorProtocol) -> UIViewController {
         let presenter = ListOfClientsPresenter(navigator: navigator, coreDataStore: coreDataStore )
         let vc = ListOfClientsVC(presenter: presenter)
-        
+        presenter.set(firstVC: vc)
         return vc
     }
     
     func createClientVC(delegate: DetailInfoPresenterDelegate, navigator: NavigatorProtocol) -> UIViewController {
         let presenter = DetailInfoPresenter(delegate: delegate, navigator: navigator)
         let vc = DetailInfoVC(presenter: presenter)
+        
+        return vc
+    }
+    
+    func createInfoCell(navigator: NavigatorProtocol) -> UIViewController {
+        let presenter = InfoClientCellPresenter(navigator: navigator)
+        let vc = InfoClientCellVC(presenter: presenter)
         
         return vc
     }

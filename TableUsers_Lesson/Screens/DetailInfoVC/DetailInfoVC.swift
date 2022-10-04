@@ -47,8 +47,8 @@ class DetailInfoVC: UIViewController {
 
 extension DetailInfoVC {
     @IBAction func changeButton(_ sender: Any) {
-        presenter.getText(with: nameTextField.text ?? "")
-        presenter.getText(with: surNameTextField.text ?? "")
-        presenter.getText(with: ageTextField.text ?? "")
+        let newClient = MyClient(name: nameTextField.text ?? "", surName: surNameTextField.text ?? "", age: Int16(ageTextField.text ?? "") ?? 0)
+        presenter.getText(myModel: newClient)
+        navigationController?.popViewController(animated: true)
     }
 }

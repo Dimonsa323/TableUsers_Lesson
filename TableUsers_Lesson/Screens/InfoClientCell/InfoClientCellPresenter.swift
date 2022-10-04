@@ -6,11 +6,21 @@
 //
 
 import Foundation
+import UIKit
 
 protocol InfoClientCellPresenterProtocol {
     
 }
 
 class InfoClientCellPresenter: InfoClientCellPresenterProtocol {
+    
+    private let navigator: NavigatorProtocol
+    
+    init(navigator: NavigatorProtocol) {
+        self.navigator = navigator
+    }
+}
+
+extension InfoClientCellPresenter {
     
 }

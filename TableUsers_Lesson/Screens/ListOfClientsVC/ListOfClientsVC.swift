@@ -10,7 +10,8 @@ import UIKit
 // MARK: - Protocol
 
 protocol ListOfClientProtocol {
-    func editComplete(with text: String)
+   // func editComplete(model: MyClient)
+    func reloadTableView()
 }
 
 // MARK: - Class
@@ -38,8 +39,9 @@ class ListOfClientsVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        }
     }
-}
+
 
 // MARK: - Private Extension
 
@@ -48,7 +50,9 @@ private extension ListOfClientsVC {
     func setupUI() {
         setupTableView()
         rightButton()
+        
     }
+    
     
     func setupTableView() {
         tableView.delegate = self
@@ -57,7 +61,7 @@ private extension ListOfClientsVC {
     }
     
     func rightButton() {
-        let button = UIBarButtonItem(barButtonSystemItem: .play, target: self, action: #selector(button))
+        let button = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(button))
         navigationItem.rightBarButtonItem = button
     }
     
@@ -68,6 +72,11 @@ private extension ListOfClientsVC {
 }
 
 extension ListOfClientsVC: UITableViewDataSource, UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        presenter.showInfoCell(view: self)
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         presenter.myClient.count
     }
@@ -82,8 +91,8 @@ extension ListOfClientsVC: UITableViewDataSource, UITableViewDelegate {
 }
 
 extension ListOfClientsVC: ListOfClientProtocol {
-    func editComplete(with text: String) {
-        
-        
+    
+    func reloadTableView() {
+        tableView.reloadData() 
     }
 }

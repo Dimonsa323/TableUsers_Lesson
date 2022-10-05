@@ -7,7 +7,7 @@
 
 import UIKit
 
-    // MARK: - Class InfoClientCellVC
+// MARK: - Class InfoClientCellVC
 
 class InfoClientCellVC: UIViewController {
     
@@ -20,10 +20,17 @@ class InfoClientCellVC: UIViewController {
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var surnameTextField: UITextField!
     @IBOutlet weak var ageTextField: UITextField!
+    @IBOutlet weak var editButton: UIButton!
+
+    // MARK: - Properties
     
-    // MARK: - IBOutlets
-    
-    private var editClient = EditClient.openLable
+    private var editClient = EditClient.openLable {
+        didSet {
+            UIView.animate(withDuration: 1) {
+                self.setupVCState()
+            }
+        }
+    }
     private let presenter: InfoClientCellPresenter
     
     // MARK: - Init
@@ -42,44 +49,91 @@ class InfoClientCellVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        setupVCState()
     }
 }
 
-    // MARK: - Private Extension
+// MARK: - Private Extension
 
 extension InfoClientCellVC {
     
     @IBAction func saveButton() {
-        
+        let infoClient = MyClient(name: nameTextField.text ?? "", surName: surnameTextField.text ?? "", age: Int16(ageTextField.text ?? "") ?? 0)
+        presenter.getTextInfo(model: infoClient)
+        presenter.popView(vc: self)
     }
 }
 
 private extension InfoClientCellVC {
     func setupUI() {
-    rightButton()
+        setupTextFields()
+        rightButton()
+    }
+
+    func setupTextFields() {
+        nameTextField.delegate = self
+        nameTextField.returnKeyType = .done
+        surnameTextField.delegate = self
+        surnameTextField.returnKeyType = .done
+        ageTextField.delegate = self
+        ageTextField.returnKeyType = .done
     }
     
-    func setupEnum(page changes: EditClient) {
-        switch changes {
+    func setupVCState() {
+        switch editClient {
         case .openLable:
             nameLabel.isHidden = false
             surNameLabel.isHidden = false
             ageLabel.isHidden = false
-        case .openTextField:
             nameTextField.isHidden = true
             surnameTextField.isHidden = true
             ageTextField.isHidden = true
+            editButton.isHidden = true
+
+            title = "Label style"
+        case .openTextField:
+            nameLabel.isHidden = true
+            surNameLabel.isHidden = true
+            ageLabel.isHidden = true
+            nameTextField.isHidden = false
+            surnameTextField.isHidden = false
+            ageTextField.isHidden = false
+            editButton.isHidden = false
+
+            title = "Text Field style"
         }
     }
     
-    func  rightButton() {
-        let editButton = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(button))
-        navigationItem.rightBarButtonItem = editButton
+    func rightButton() {
+        let button = UIBarButtonItem(title: "Change State", style: .plain, target: self, action: #selector(button))
+        navigationItem.rightBarButtonItem = button
     }
     
     @objc
     func button() {
-        setupEnum(page: editClient)
+        editClient = editClient == .openLable ? .openTextField : .openLable
     }
 }
+
+extension InfoClientCellVC: UITextFieldDelegate {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super .touchesBegan(touches, with: event)
+        view.endEditing(true)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == nameTextField {
+            surnameTextField.becomeFirstResponder()
+        } else if textField == surnameTextField {
+            ageTextField.becomeFirstResponder()
+        } else {
+            textField.resignFirstResponder()
+        }
+
+        return true
+    }
+}
+
+
+
 

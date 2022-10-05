@@ -5,7 +5,6 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -13,10 +12,11 @@
             <connections>
                 <outlet property="ageLabel" destination="Mgn-HL-b1a" id="oEN-mW-JIS"/>
                 <outlet property="ageTextField" destination="tTW-Je-Du0" id="w4q-Ok-cLd"/>
+                <outlet property="editButton" destination="zPi-eF-Sha" id="Goi-6Y-o5e"/>
                 <outlet property="nameLabel" destination="ov3-JG-QHo" id="ThB-eG-DgN"/>
                 <outlet property="nameTextField" destination="wqz-ao-tMW" id="IQl-G4-JRd"/>
                 <outlet property="surNameLabel" destination="jET-p9-Ncd" id="sFC-JU-ZEU"/>
-                <outlet property="surnameTextField" destination="tTW-Je-Du0" id="jRo-6o-lpi"/>
+                <outlet property="surnameTextField" destination="TtN-W7-Lqm" id="cKH-S6-JNu"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -79,7 +79,7 @@
                 </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="S30-kd-0HK" firstAttribute="top" secondItem="Skn-qV-RgG" secondAttribute="bottom" constant="100" id="4wM-To-qNM"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="S30-kd-0HK" secondAttribute="trailing" constant="16" id="IWf-lU-Vfk"/>
@@ -94,9 +94,4 @@
             <point key="canvasLocation" x="139" y="78"/>
         </view>
     </objects>
-    <resources>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-    </resources>
 </document>

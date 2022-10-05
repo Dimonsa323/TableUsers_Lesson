@@ -10,6 +10,10 @@ import UIKit
 
 // MARK: - Protocol Presenter
 
+protocol ListOfClientDelegate {
+    
+}
+
 protocol ListOfClientsPresenterProtocol {
     
     var myClient: [MyClient] { get set }
@@ -30,15 +34,20 @@ class ListOfClientsPresenter: ListOfClientsPresenterProtocol {
     
     var myClient: [MyClient] = []
     var firstVC: ListOfClientProtocol!
+    var getInfoVC: ListOfClientProtocol!
     
+    private let deligate: ListOfClientDelegate
     private let navigator: NavigatorProtocol
     private let coreDataStore: CoreDataStoreProtocol
     
     // MARK: - Init
     
-    init(navigator: NavigatorProtocol, coreDataStore: CoreDataStoreProtocol) {
+    init(navigator: NavigatorProtocol,
+         coreDataStore: CoreDataStoreProtocol,
+         deligate: ListOfClientDelegate) {
         self.navigator = navigator
         self.coreDataStore = coreDataStore
+        self.deligate = deligate
     }
     
     // MARK: - Method
@@ -47,12 +56,16 @@ class ListOfClientsPresenter: ListOfClientsPresenterProtocol {
         self.firstVC = firstVC
     }
     
+    func info(getInfoVC: ListOfClientProtocol) {
+        self.getInfoVC = getInfoVC
+    }
+    
     func showTextFieldScreen(vc: UIViewController) {
         navigator.showCreateClientVC(view: vc, delegate: self)
     }
     
     func showInfoCell(view: UIViewController) {
-        navigator.showCellScreen(view: view)
+        navigator.showCellScreen(view: view, delegate: self)
     }
     
     
@@ -96,5 +109,12 @@ extension ListOfClientsPresenter: DetailInfoPresenterDelegate {
     func send(myModel: MyClient) {
         myClient.append(myModel)
         firstVC.reloadTableView()
+    }
+}
+
+extension ListOfClientsPresenter: InfoClientDelegate {
+    func sendInfoFirstVC(model: MyClient) {
+        myClient.append(model)
+        getInfoVC.reloadTableView()
     }
 }

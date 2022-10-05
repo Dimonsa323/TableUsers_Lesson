@@ -10,7 +10,6 @@ import UIKit
 // MARK: - Protocol
 
 protocol ListOfClientProtocol {
-   // func editComplete(model: MyClient)
     func reloadTableView()
 }
 
@@ -39,9 +38,8 @@ class ListOfClientsVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        }
     }
-
+}
 
 // MARK: - Private Extension
 
@@ -50,9 +48,7 @@ private extension ListOfClientsVC {
     func setupUI() {
         setupTableView()
         rightButton()
-        
     }
-    
     
     func setupTableView() {
         tableView.delegate = self
@@ -93,6 +89,6 @@ extension ListOfClientsVC: UITableViewDataSource, UITableViewDelegate {
 extension ListOfClientsVC: ListOfClientProtocol {
     
     func reloadTableView() {
-        tableView.reloadData() 
+        tableView.reloadData()
     }
 }

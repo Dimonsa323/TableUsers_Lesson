@@ -13,21 +13,22 @@ protocol InfoClientDelegate {
 }
 
 protocol InfoClientCellPresenterProtocol {
-    var myClient: [MyClient] { get set }
+    var myClient: MyClient { get set }
     
     func getTextInfo(model: MyClient)
 }
 
 class InfoClientCellPresenter: InfoClientCellPresenterProtocol {
     
-    var myClient: [MyClient] = []
+    var myClient: MyClient
     
     private let delegate: InfoClientDelegate
     private let navigator: NavigatorProtocol
     
-    init(navigator: NavigatorProtocol, delegate: InfoClientDelegate) {
+    init(navigator: NavigatorProtocol, delegate: InfoClientDelegate, myClient: MyClient) {
         self.navigator = navigator
         self.delegate = delegate
+        self.myClient = myClient
     }
     
     func getTextInfo(model: MyClient) {

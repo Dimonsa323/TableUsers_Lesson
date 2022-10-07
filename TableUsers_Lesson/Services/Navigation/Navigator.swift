@@ -11,7 +11,7 @@ import UIKit
 
 protocol NavigatorProtocol {
     func showCreateClientVC(view: UIViewController, delegate: DetailInfoPresenterDelegate)
-    func showCellScreen(view: UIViewController, delegate: InfoClientDelegate)
+    func showCellScreen(view: UIViewController, delegate: InfoClientDelegate, model: MyClient)
     func popViewController(view: UIViewController)
 }
 
@@ -30,8 +30,8 @@ class Navigator: NavigatorProtocol {
         view.navigationController?.pushViewController(vc, animated: true)
     }
     
-    func showCellScreen(view: UIViewController, delegate: InfoClientDelegate) {
-        let vc = assembler.createInfoCell(navigator: self, delegate: delegate)
+    func showCellScreen(view: UIViewController, delegate: InfoClientDelegate, model: MyClient) {
+        let vc = assembler.createInfoCell(navigator: self, delegate: delegate, model: model )
         view.navigationController?.pushViewController(vc, animated: true)
     }
     

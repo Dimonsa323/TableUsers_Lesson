@@ -70,7 +70,7 @@ private extension ListOfClientsVC {
 extension ListOfClientsVC: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        presenter.showInfoCell(view: self)
+        presenter.showInfoCell(view: self, indexPath: indexPath)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

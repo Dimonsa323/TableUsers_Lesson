@@ -10,10 +10,6 @@ import UIKit
 
 // MARK: - Protocol Presenter
 
-protocol ListOfClientDelegate {
-    
-}
-
 protocol ListOfClientsPresenterProtocol {
     
     var myClient: [MyClient] { get set }
@@ -23,7 +19,7 @@ protocol ListOfClientsPresenterProtocol {
     func fetchRequest(closure: () -> ())
     func deleteUser(indexPath: IndexPath, closure: () -> ())
     func updateUser(indexPath: IndexPath, localUser: MyClient, closure:() -> ())
-    func showInfoCell(view: UIViewController)
+    func showInfoCell(view: UIViewController, indexPath: IndexPath)
 }
 
 // MARK: - Class
@@ -34,20 +30,15 @@ class ListOfClientsPresenter: ListOfClientsPresenterProtocol {
     
     var myClient: [MyClient] = []
     var firstVC: ListOfClientProtocol!
-    var getInfoVC: ListOfClientProtocol!
     
-    private let deligate: ListOfClientDelegate
     private let navigator: NavigatorProtocol
     private let coreDataStore: CoreDataStoreProtocol
     
     // MARK: - Init
     
-    init(navigator: NavigatorProtocol,
-         coreDataStore: CoreDataStoreProtocol,
-         deligate: ListOfClientDelegate) {
+    init(navigator: NavigatorProtocol, coreDataStore: CoreDataStoreProtocol) {
         self.navigator = navigator
         self.coreDataStore = coreDataStore
-        self.deligate = deligate
     }
     
     // MARK: - Method
@@ -56,18 +47,14 @@ class ListOfClientsPresenter: ListOfClientsPresenterProtocol {
         self.firstVC = firstVC
     }
     
-    func info(getInfoVC: ListOfClientProtocol) {
-        self.getInfoVC = getInfoVC
-    }
-    
     func showTextFieldScreen(vc: UIViewController) {
         navigator.showCreateClientVC(view: vc, delegate: self)
     }
     
-    func showInfoCell(view: UIViewController) {
-        navigator.showCellScreen(view: view, delegate: self)
+    func showInfoCell(view: UIViewController, indexPath: IndexPath) {
+        let infoModel = myClient[indexPath.row]
+        navigator.showCellScreen(view: view, delegate: self, model: infoModel)
     }
-    
     
     func saveUserInDatabase(user: MyClient, closure: () -> ()) {
         self.myClient.append(user)
@@ -115,6 +102,5 @@ extension ListOfClientsPresenter: DetailInfoPresenterDelegate {
 extension ListOfClientsPresenter: InfoClientDelegate {
     func sendInfoFirstVC(model: MyClient) {
         myClient.append(model)
-        getInfoVC.reloadTableView()
     }
 }

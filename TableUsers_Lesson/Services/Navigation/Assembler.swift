@@ -26,8 +26,8 @@ class Assembler {
         return vc
     }
     
-    func createInfoCell(navigator: NavigatorProtocol, delegate: InfoClientDelegate) -> UIViewController {
-        let presenter = InfoClientCellPresenter(navigator: navigator, delegate: delegate)
+    func createInfoCell(navigator: NavigatorProtocol, delegate: InfoClientDelegate, model: MyClient) -> UIViewController {
+        let presenter = InfoClientCellPresenter(navigator: navigator, delegate: delegate, myClient: model)
         let vc = InfoClientCellVC(presenter: presenter)
         
         return vc
